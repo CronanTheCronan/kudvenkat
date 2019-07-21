@@ -1,0 +1,31 @@
+<app-employeecount
+  [all]="getTotalEmployeesCount()"
+  [male]="getTotalMaleEmployeesCount()"
+  [female]="getTotalFemaleEmployeesCount()"
+></app-employeecount>
+<br />
+<br />
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Annual Salary</th>
+      <th>Date of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.code | uppercase }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.gender | employeeTitle: employee.gender }}</td>
+      <td>{{ employee.annualSalary | currency: 'USD':'symbol':'1.2-2' }}</td>
+      <td>{{ employee.dateOfBirth | date: 'fullDate' | uppercase }}</td>
+    </tr>
+    <tr *ngIf="!employees || employees.length == 0">
+      <td colspan="5">No employees to display</td>
+    </tr>
+  </tbody>
+</table>
